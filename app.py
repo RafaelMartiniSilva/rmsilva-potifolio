@@ -55,7 +55,7 @@ def send():
             {form_contato.mensagem}
             """
         )
-        # mail.send(msg)
+        mail.send(msg)
         flash("Mensagem enviada com sucesso!")
         return redirect('/')
 
