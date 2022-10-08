@@ -1,3 +1,7 @@
+# Files
+configurations.py
+.env
+
 # Configurations of Visual Studio Code
 .vscode/*
 !.vscode/settings.json

@@ -1,8 +1,11 @@
 from time import time
 from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message, Message
-from configurations import nome, email, senha
+from dotenv import load_dotenv
+import os
 
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'secret#9137*'
@@ -13,8 +16,8 @@ mail_settings = {
     "MAIL_USE_SSL": True,
     "MAIL_USE_TLS": False,
     # "MAIL_NAME": name,
-    "MAIL_USERNAME": email,
-    "MAIL_PASSWORD": senha,
+    "MAIL_USERNAME": os.getenv("EMAIL"),
+    "MAIL_PASSWORD": os.getenv("SENHA"),
 }
 app.config.update(mail_settings)
 
