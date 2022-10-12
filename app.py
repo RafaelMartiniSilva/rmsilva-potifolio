@@ -1,6 +1,6 @@
 from time import time
 from flask import Flask, render_template, redirect, request, flash
-from flask_mail import Mail, Message, Message
+from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
 
@@ -38,7 +38,7 @@ def index():
 
 @app.route('/send', methods=['GET', 'POST'])
 def send():
-    print('Testetertertretertertert')
+    print(f'{request.method} method requested')
     if request.method == 'POST':
         form_contato = Contatos(
             request.form["nome"],
@@ -55,6 +55,11 @@ def send():
             {form_contato.mensagem}
             """
         )
+        #msg.body = f"""
+        #{form_contato.nome} te enviou a seguinte mensagem:
+        #{form_contato.mensagem}
+        #"""
+        #msg.html = f"<b>testing</b><p>{form_contato.nome}</p>"
         mail.send(msg)
         flash("Mensagem enviada com sucesso!")
         return redirect('/')
