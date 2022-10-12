@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
+import datetime
 
 
 load_dotenv()
@@ -46,8 +47,10 @@ def send():
             request.form["mensagem"]
         )
 
+        time_str = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+
         msg = Message(
-            subject=f'{form_contato.nome} te enviou uma mensagem no portifólio',
+            subject=f'{form_contato.nome} te enviou uma mensagem no portifólio às {time_str}',
             sender=app.config.get('MAIL_USERNAME'),
             recipients=['rafaelmartinisilva@hotmail.com', app.config.get('MAIL_USERNAME')],
             body=f"""
