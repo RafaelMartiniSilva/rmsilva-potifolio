@@ -7,6 +7,7 @@ import os
 
 load_dotenv()
 
+
 app = Flask(__name__)
 app.secret_key = 'secret#9137*'
 
@@ -22,7 +23,6 @@ mail_settings = {
 app.config.update(mail_settings)
 
 mail = Mail(app)
-
 
 class Contatos:
     def __init__(self, nome, email, mensagem):
